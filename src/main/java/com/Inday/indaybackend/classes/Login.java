@@ -17,6 +17,7 @@ public class Login implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+				  // Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotNull
@@ -33,6 +34,10 @@ public class Login implements Serializable {
 	@Column(length = 70)
 	@NotNull
 	private String email;
+	
+	
+	
+				//metodos
 
 	public Login() {
 

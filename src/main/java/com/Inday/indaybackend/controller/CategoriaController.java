@@ -1,12 +1,15 @@
 package com.Inday.indaybackend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +23,8 @@ import com.Inday.indaybackend.repository.CategoriaRepository;
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {
+	
+	
 
 	@Autowired
 	private CategoriaRepository repository;
@@ -30,13 +35,27 @@ public class CategoriaController {
 		return repository.findAll();
 	}
 	
+	/*
 	@PostMapping
 	public Categoria salvar(@RequestBody @Valid Categoria categoria) {
-		
-		return repository.save(categoria);
-		
+			
+			return repository.save(categoria);
 	}
-	
+	*/
+	@PostMapping
+	public ResponseEntity<?> salvar(@RequestBody @Valid Categoria categoria) {	
+		
+		if (repository.findByDescricao(categoria.getDescricao()) == null) {
+			
+			return  ResponseEntity.ok(repository.save(categoria));
+			
+		}else {
+			
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				   .body(String.format("--->Categoria {%s} já Cadastrada! <---", categoria.getDescricao()));
+		}	
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Integer id){
 		
@@ -49,5 +68,16 @@ public class CategoriaController {
 		
 		return ResponseEntity.notFound().build();
 	}
+	
+	
+	@DeleteMapping("{id}")
+	public void deletePorId(@PathVariable("id") Integer id) {
+
+		if (repository.findById(id) != null) {
+			
+			repository.deleteById(id);
+		}
+	}
+	
 
 }

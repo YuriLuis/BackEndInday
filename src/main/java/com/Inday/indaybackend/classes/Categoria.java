@@ -18,10 +18,9 @@ public class Categoria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotNull
 	private Integer id;
 
-	@NotNull
+	 
 	private String descricao;
 
 	public Categoria() {

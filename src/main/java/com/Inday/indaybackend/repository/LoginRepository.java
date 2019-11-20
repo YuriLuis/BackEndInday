@@ -6,4 +6,7 @@ import com.Inday.indaybackend.classes.Login;
 
 public interface LoginRepository extends JpaRepository<Login, Integer>{
 
+	public Login findByUsuarioAndSenhaAndEmail(String usuario, String senha, String email);
+	
+	
 }
