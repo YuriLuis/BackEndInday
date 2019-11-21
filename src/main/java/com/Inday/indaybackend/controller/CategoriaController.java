@@ -1,6 +1,5 @@
 package com.Inday.indaybackend.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +51,7 @@ public class CategoriaController {
 		}else {
 			
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-				   .body(String.format("--->Categoria {%s} já Cadastrada! <---", categoria.getDescricao()));
+				   .body(String.format("--->Categoria já Cadastrada! <---"));
 		}	
 	}
 

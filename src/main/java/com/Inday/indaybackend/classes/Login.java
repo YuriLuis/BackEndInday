@@ -19,7 +19,7 @@ public class Login implements Serializable {
 
 				  // Atributos
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private Integer id;
 

@@ -20,8 +20,7 @@ public class Despesa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@NotNull
@@ -30,24 +29,21 @@ public class Despesa implements Serializable{
 	@NotNull
 	private Double valor;
 
-	@NotNull
 	private LocalDate date;
 
 	@ManyToOne
 	@JoinColumn
-	@NotNull
 	private Categoria categoria;
 
 	@ManyToOne
 	@JoinColumn
-	@NotNull
 	private Login login;
 	
 	
 	private Boolean tipoDespesa;
 
 	public Despesa() {
-
+		
 	}
 	
 	public String getDescricao() {
