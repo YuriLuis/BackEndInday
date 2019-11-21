@@ -33,11 +33,11 @@ public class Receita implements Serializable {
 	private LocalDate date;
 
 	@ManyToOne
-	@JoinColumn(name = "idCategoria")
+	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 
 	@ManyToOne
-	@JoinColumn(name = "idLogin")
+	@JoinColumn(name = "id_login")
 	private Login login;
 	
 	private Boolean receitaFixa;
