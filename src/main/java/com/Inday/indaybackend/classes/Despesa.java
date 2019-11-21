@@ -27,20 +27,24 @@ public class Despesa implements Serializable{
 	private String descricao;
 
 	@NotNull
-	private Double valor;
+	private double valor;
 
+	@NotNull
 	private LocalDate date;
 
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "idLogin")
 	private Login login;
 	
+	private Boolean despesaFixa;
 	
-	private Boolean tipoDespesa;
+	private Boolean despesaUnica;
+	
+	private Boolean pago;
 
 	public Despesa() {
 		
@@ -54,11 +58,11 @@ public class Despesa implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Double getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(double valor) {
 		
 		if (valor > 0) {
 			this.valor -= valor;
@@ -98,7 +102,28 @@ public class Despesa implements Serializable{
 	}
 
 	public Boolean getTipoDespesa() {
-		return tipoDespesa;
+		return despesaFixa;
+	}
+	
+	public void setTipoDespesa(Boolean despesaFixa) {
+		
+		this.despesaFixa = despesaFixa;
+	}
+
+	public Boolean getDespesaUnica() {
+		return despesaUnica;
+	}
+
+	public void setDespesaUnica(Boolean despesaUnica) {
+		this.despesaUnica = despesaUnica;
+	}
+
+	public Boolean getPago() {
+		return pago;
+	}
+
+	public void setPago(Boolean pago) {
+		this.pago = pago;
 	}
 
 }

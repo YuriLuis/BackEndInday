@@ -34,13 +34,6 @@ public class CategoriaController {
 		return repository.findAll();
 	}
 	
-	/*
-	@PostMapping
-	public Categoria salvar(@RequestBody @Valid Categoria categoria) {
-			
-			return repository.save(categoria);
-	}
-	*/
 	@PostMapping
 	public ResponseEntity<?> salvar(@RequestBody @Valid Categoria categoria) {	
 		

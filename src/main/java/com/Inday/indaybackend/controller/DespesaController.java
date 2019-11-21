@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ public class DespesaController {
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/cadastrar")
 	public ResponseEntity<?> salvar(@RequestBody  Despesa despesa) {	
 		
 		if (repository.findByDescricaoAndValor(despesa.getDescricao(), despesa.getValor()) == null) {
@@ -58,6 +59,15 @@ public class DespesaController {
 		}
 		
 		return ResponseEntity.notFound().build();
+	}
+	
+	@DeleteMapping("{id}")
+	public void deletePorId(@PathVariable("id") Integer id) {
+
+		if (repository.findById(id) != null) {
+			
+			repository.deleteById(id);
+		}
 	}
 
 

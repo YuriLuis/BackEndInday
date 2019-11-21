@@ -39,13 +39,11 @@ public class Meta implements Serializable{
 	private Double valorMensal;
 
 	@ManyToOne
-	@JoinColumn
-	@NotNull
+	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 
 	@ManyToOne
-	@JoinColumn
-	@NotNull
+	@JoinColumn(name = "idLogin")
 	private Login login;
 
 	public Meta() {

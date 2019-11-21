@@ -33,16 +33,18 @@ public class Receita implements Serializable {
 	private LocalDate date;
 
 	@ManyToOne
-	@JoinColumn
-	@NotNull
+	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 
 	@ManyToOne
-	@JoinColumn
-	@NotNull
+	@JoinColumn(name = "idLogin")
 	private Login login;
 	
-	private Boolean tipoReceita;
+	private Boolean receitaFixa;
+	
+	private Boolean receitaUnica;
+	
+	private Boolean pago;
 
 	public Receita() {
 
@@ -92,8 +94,30 @@ public class Receita implements Serializable {
 		return id;
 	}
 
-	public Boolean getTipoReceita() {
-		return tipoReceita;
+	public Boolean getReceitaFixa() {
+		return receitaFixa;
 	}
+	
+	public void setReceitaFixa(Boolean receitaFixa) {
+		
+		this.receitaFixa = receitaFixa;
+	}
+
+	public Boolean getReceitaUnica() {
+		return receitaUnica;
+	}
+
+	public void setReceitaUnica(Boolean receitaUnica) {
+		this.receitaUnica = receitaUnica;
+	}
+
+	public Boolean getPago() {
+		return pago;
+	}
+
+	public void setPago(Boolean pago) {
+		this.pago = pago;
+	}
+	
 
 }

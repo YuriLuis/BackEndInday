@@ -10,6 +10,5 @@ public interface CategoriaRepository extends JpaRepository<Categoria,Integer > {
 	
 	public Categoria findByDescricao(String descricao);
 	
-	public Categoria deleteByDescricaoAndId(String descricao, Integer id);
 	
 }
