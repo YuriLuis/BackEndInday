@@ -20,10 +20,9 @@ public class Login implements Serializable {
 				  // Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	private Integer id;
 
-	@Column(length = 50)
+	@Column
 	@NotNull
 	private String usuario;
 

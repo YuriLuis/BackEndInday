@@ -9,4 +9,6 @@ import com.Inday.indaybackend.classes.Despesa;
 public interface DespesaRepository  extends JpaRepository<Despesa, Integer> {
 
 	public Despesa findByDescricaoAndValor(String descricao, Double valor);
+	
+
 }
