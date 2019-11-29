@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.Inday.indaybackend.repository.LoginRepository;
 
 @RestController
 @RequestMapping("/login")
+@CrossOrigin("*")
 public class LoginController {
 
 	@Autowired
@@ -71,27 +73,25 @@ public class LoginController {
 		}
 	}
 	
-	@GetMapping("/autentica")
-	public String autenticaLogin(@RequestBody Login login) {
-		
-		List<Login> aux = new ArrayList<Login>();
-		
-		String auxS = "";
-		
+	
+	@PostMapping("/autentica")
+	@CrossOrigin("*")
+	public Boolean autenticaLogin(@RequestBody Login login) {
+	
 		for (Login l : findAll()) {
 			
 			if (login.getUsuario().equalsIgnoreCase(l.getUsuario()) && (login.getSenha().equalsIgnoreCase(l.getSenha()))) {
 				
-				auxS = "Logado com sucesso!";
 				
-				return  auxS;
+				
+				return  true;
 			
 			}
 		}
 		
-		auxS = "Login ou senha incorreto!";
 		
-		return auxS;
+		
+		return false;
 	}
 
 }
