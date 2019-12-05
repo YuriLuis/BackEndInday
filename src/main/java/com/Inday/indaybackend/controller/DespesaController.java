@@ -3,6 +3,8 @@ package com.Inday.indaybackend.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,8 @@ public class DespesaController {
 	
 	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<?> salvar(@RequestBody  Despesa despesa) {	
+	@CrossOrigin("*")
+	public ResponseEntity<?> salvar(@RequestBody @Valid  Despesa despesa) {	
 		
 		if (repository.findByDescricaoAndValor(despesa.getDescricao(), despesa.getValor()) == null) {
 			
@@ -47,6 +50,20 @@ public class DespesaController {
 		}	
 	}
 	
+	@PostMapping("{id}")
+	public Boolean isLogado(@PathVariable("id") Integer id){
+		
+		Optional<Despesa> despesa = repository.findById(id);
+		
+		if (despesa.isPresent()) {
+			
+			despesa.get().getLogin().setLogado(true);
+			return true;		
+		}
+		
+		return false;
+		
+	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Integer id){
@@ -55,6 +72,7 @@ public class DespesaController {
 		
 		if (despesa.isPresent()) {
 			
+			despesa.get().getLogin().setLogado(true);
 			return ResponseEntity.ok(despesa.get());		
 		}
 		

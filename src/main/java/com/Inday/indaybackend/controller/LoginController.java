@@ -82,14 +82,10 @@ public class LoginController {
 			
 			if (login.getUsuario().equalsIgnoreCase(l.getUsuario()) && (login.getSenha().equalsIgnoreCase(l.getSenha()))) {
 				
-				
-				
 				return  true;
 			
 			}
 		}
-		
-		
 		
 		return false;
 	}

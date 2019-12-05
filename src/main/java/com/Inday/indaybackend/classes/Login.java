@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.NotNull;
 
 @Entity
 @Table
@@ -33,6 +33,8 @@ public class Login implements Serializable {
 	@Column(length = 70)
 	@NotNull
 	private String email;
+	
+	private Boolean logado;
 	
 	
 	
@@ -68,6 +70,15 @@ public class Login implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Boolean getLogado() {
+		return logado;
+	}
+
+	public void setLogado(Boolean logado) {
+		
+		this.logado = logado;
 	}
 
 }
