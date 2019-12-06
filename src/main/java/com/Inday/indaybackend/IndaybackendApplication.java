@@ -10,4 +10,6 @@ public class IndaybackendApplication {
 		SpringApplication.run(IndaybackendApplication.class, args);
 	}
 
+	
+
 }
