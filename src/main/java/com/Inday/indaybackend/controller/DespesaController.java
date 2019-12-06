@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Inday.indaybackend.classes.Despesa;
+import com.Inday.indaybackend.classes.Receita;
 import com.Inday.indaybackend.repository.DespesaRepository;
+import com.Inday.indaybackend.repository.ReceitaRepository;
 
 @RestController
 @RequestMapping("/despesa")
@@ -28,12 +30,49 @@ public class DespesaController {
 	@Autowired
 	private DespesaRepository repository;
 	
+	@Autowired
+	private ReceitaRepository receitaRepository;
+	
 	@GetMapping
 	public List<Despesa> findAll(){
 		
 		return repository.findAll();
 	}
 	
+	@GetMapping("/saldo")
+	public Double saldo() {
+		
+		Double despesa = totalDespesa();
+		Double receita = totalReceita();
+		
+		Double resultado = receita + despesa;
+		
+		return resultado;
+	}
+	
+	public Double totalDespesa() {
+		
+		Double soma = 0.0;
+		
+		for (Despesa d : repository.findAll()) {
+			
+			soma += d.getValor();
+		}
+		
+		return soma;
+	}
+	
+	public Double totalReceita() {
+		
+		Double soma = 0.0;
+		
+		for (Receita r : receitaRepository.findAll()) {
+			
+			soma += r.getValor();
+		}
+		
+		return soma;
+	}
 	
 	@PostMapping("/cadastrar")
 	@CrossOrigin("*")
@@ -49,21 +88,7 @@ public class DespesaController {
 				   .body(String.format("Despesa já resgitrada! "));
 		}	
 	}
-	
-	@PostMapping("{id}")
-	public Boolean isLogado(@PathVariable("id") Integer id){
 		
-		Optional<Despesa> despesa = repository.findById(id);
-		
-		if (despesa.isPresent()) {
-			
-			despesa.get().getLogin().setLogado(true);
-			return true;		
-		}
-		
-		return false;
-		
-	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Integer id){

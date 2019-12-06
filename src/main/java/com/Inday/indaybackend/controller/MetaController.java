@@ -35,7 +35,7 @@ public class MetaController {
 	}
 	
 	@PostMapping
-	public Meta salvar(@RequestBody @Valid Meta meta) {
+	public Meta salvar(@RequestBody  Meta meta) {
 		
 		return repository.save(meta);
 		

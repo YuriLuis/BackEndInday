@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 import com.sun.istack.NotNull;
 
@@ -27,6 +28,7 @@ public class Receita implements Serializable {
 	private String descricao;
 
 	@NotNull
+	@Positive
 	private Double valor;
 
 	@NotNull

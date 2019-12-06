@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 import com.sun.istack.NotNull;
 
@@ -63,13 +64,7 @@ public class Despesa implements Serializable{
 	}
 
 	public void setValor(double valor) {
-		
-		if (valor > 0) {
 			this.valor -= valor;
-		}else {
-			
-			throw new RuntimeException("Valor negativo!");
-		}
 		
 	}
 
